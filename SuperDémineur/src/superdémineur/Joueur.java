@@ -12,28 +12,29 @@ import java.util.ArrayList;
  */
 public class Joueur {
     private String nom;
-    private int pt_de_vie;
+    private int pt_vie;
     private int kit_deminage;
     
     public Joueur(String nom1) {
-        this.nom = nom1;
-        this.pt_de_vie=3;
-        this.kit_deminage=0;
+        nom = nom1;
+        pt_vie=3;
+        kit_deminage=0;
     }
     
     public int nbVie(){
-        return(pt_de_vie);
+        return(pt_vie);
+    }
+    
+    public int mort(){
+        pt_vie-=1;
+        return pt_vie;
     }
     
     public void obtenirKit() {
         kit_deminage += 1;
-    }
-    
+    }  
     
     public void utiliserKit() {
         kit_deminage -= 1;
-    }    
-    
-    
-    
+    }      
 }
