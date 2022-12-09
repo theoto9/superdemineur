@@ -55,7 +55,7 @@ public boolean presenceBombe (){
         presenceKit=true;
     }
     
-    public int nombreBombe(){
+    public int nombreBombeVoisines(){
         return nbBombes;
     }
     
