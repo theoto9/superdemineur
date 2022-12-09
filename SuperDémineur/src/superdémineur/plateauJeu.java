@@ -42,16 +42,23 @@ public class plateauJeu {
     
     
 } 
-  public void placerBombe(int x, int y){
-    grille[x][y].placerBombe();
+  public String placerBombe(int x, int y){
+     grille[x][y].placerBombe();
+    String b = "B"; 
+        
+    return b;
 }
   
- public void placerDrapeau(int x, int y){
-    grille[x][y].placerDrapeau();   
+ public String placerDrapeau(int x, int y){
+    grille[x][y].placerDrapeau();
+    String d ="D";
+    return d;
     
  }  
-  public void placerKit(int x, int y){
-    grille[x][y].placerKit();   
+  public String placerKit(int x, int y){
+    grille[x][y].placerKit();
+    String k ="K";
+    return k;
     
  } 
    public void suppDrapeau(int x, int y){
