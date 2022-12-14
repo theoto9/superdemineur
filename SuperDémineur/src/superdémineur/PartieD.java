@@ -10,7 +10,7 @@ package superdémineur;
  */
 public class PartieD {
     
-    private Plateau2Jeu plateau;
+    private plateauJeu plateau;
     private Joueur joueurCourant;
     
     
