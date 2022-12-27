@@ -35,6 +35,11 @@ public class plateauJeu {
  
   }
   
+  public boolean presenceDrap(int x, int y){
+      boolean a = grille[x][y].presenceDrap();
+      return a;
+  }
+  
   public boolean presenceKit(int x, int y){
     boolean b=grille[x][y].presenceKit();
     return b;
@@ -42,32 +47,40 @@ public class plateauJeu {
     
     
 } 
-  public String placerBombe(int x, int y){
+  public void placerBombe(int x, int y){
      grille[x][y].placerBombe();
-    String b = "B"; 
-        
-    return b;
+    
 }
+ 
+public void supprimerBombe(int x, int y){
+     grille[x][y].supprimerBombe();
+    
+}  
   
- public String placerDrapeau(int x, int y){
+ public void placerDrapeau(int x, int y){
     grille[x][y].placerDrapeau();
-    String d ="D";
-    return d;
+    
     
  }  
-  public String placerKit(int x, int y){
+  public void placerKit(int x, int y){
     grille[x][y].placerKit();
-    String k ="K";
-    return k;
+    
     
  } 
+  public void supprimerKit(int x, int y){
+    grille[x][y].supprimerKit();
+    
+    
+ }
    public void suppDrapeau(int x, int y){
-    grille[x][y].suppDrapeau();   
+    grille[x][y].suppDrapeau();
+    
     
  } 
   public int nbBombesVoisines(int x, int y){
     int c =grille[x][y].nombreBombeVoisines();   
     return c;
  }  
+ 
   
 }

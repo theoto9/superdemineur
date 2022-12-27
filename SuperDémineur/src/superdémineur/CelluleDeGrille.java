@@ -12,6 +12,7 @@ public class CelluleDeGrille {
     private boolean presenceBombe;
     private boolean presenceKit;
     private boolean drapeau;
+    private boolean statut;
     public int nbBombes;
     
     public  CelluleDeGrille(){
@@ -23,9 +24,20 @@ public class CelluleDeGrille {
     
 
     
-public boolean presenceBombe (){
+    public boolean presenceBombe (){
         
         if (presenceBombe == false){
+            return(false);
+        }
+        else{
+            return(true);
+        }
+        
+    }
+    
+    public boolean presenceDrap (){
+        
+        if (drapeau == false){
             return(false);
         }
         else{
@@ -50,9 +62,17 @@ public boolean presenceBombe (){
         presenceBombe=true;
     }
     
+    public void supprimerBombe(){
+        presenceBombe=false;
+    }
+    
     
     public void placerKit(){
         presenceKit=true;
+    }
+    
+    public void supprimerKit(){
+        presenceKit=false;
     }
     
     public int nombreBombeVoisines(){
