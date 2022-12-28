@@ -15,6 +15,7 @@ public class CelluleDeGrille {
     private boolean statut;
     public int nbBombes;
     
+    
     public  CelluleDeGrille(){
        presenceBombe=false;
        presenceKit=false;
@@ -85,6 +86,10 @@ public class CelluleDeGrille {
         presenceKit=false;
     }
     
+    public void attribuerNbBombe(int a){
+        nbBombes=a;
+    }
+    
     public int nombreBombeVoisines(){
         return nbBombes;
     }
@@ -99,12 +104,42 @@ public class CelluleDeGrille {
     @Override
 public String toString() {
     
-    if(statutCase()==true && presenceDrap()==true){
+    int a =nombreBombeVoisines();
+    
+    if(presenceDrap()==true){
         return"D";
     }
     
-    if (statutCase()==true){
-        return "0";//case cachée
+    if(a==1){
+        return "1";
+    }
+    
+    if(a==2){
+        return "2";
+    }
+    if(a==3){
+        return "3";
+    }
+    if(a==4){
+        return "4";
+    }
+    if(a==5){
+        return "5";
+    }
+    if(a==6){
+        return "6";
+    }
+    if(a==7){
+        return "7";
+    }
+    if(a==8){
+        return "8";
+    }
+    if(presenceDrap()==true){
+        return"D";
+    }
+    if (statutCase()==true&&presenceDrap()==false){
+        return "/";//case cachée
     }
     else{
         return ".";//case déminée

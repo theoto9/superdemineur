@@ -118,7 +118,10 @@ public class PartieD {
                     joueurCourant.obtenirKit();
                 }
                 if(vlr==false){
-                    plateau.décacherCase(x, y);
+//                    plateau.décacherCase(x, y);
+//                    int a = plateau.nbBombesVoisines(x, y);
+//                    System.out.println("il y a "+a+" bombes a proximité");
+                    plateau.decouverteGalerie(x, y);
                 }
                 
             }
