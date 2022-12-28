@@ -15,6 +15,14 @@ public class SuperDémineur {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Joueur J1=new Joueur("greg");
+        PartieD Jouons=new PartieD(J1);
+        
+        Jouons.initialiserPartie();
+        
+        System.out.println("lancement partie");
+        
+        Jouons.LancerPartie();
     }
     
     

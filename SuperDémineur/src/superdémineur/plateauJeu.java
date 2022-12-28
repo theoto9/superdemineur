@@ -19,10 +19,14 @@ public class plateauJeu {
         }
     }
   }
+  
+  
+  
   public void afficherGrilleSurConsole(){
     for (int i=29;i>=0;i--){
         System.out.print("\n");
         for (int j=15;j>=0;j--){
+            
             System.out.print(grille[i][j]);
             
             
@@ -47,6 +51,15 @@ public class plateauJeu {
     
     
 } 
+  
+  public void cacherCase(int x, int y){
+      grille[x][y].cacherCase();
+  }
+  
+  public void décacherCase(int x, int y){
+      grille[x][y].décacherCase();
+  }
+  
   public void placerBombe(int x, int y){
      grille[x][y].placerBombe();
     

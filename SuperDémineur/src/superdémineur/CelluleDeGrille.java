@@ -22,7 +22,17 @@ public class CelluleDeGrille {
        nbBombes=0;
     }
     
-
+    public void cacherCase(){
+        statut=true;//statut en true <=> case cachée
+    }
+    
+    public void décacherCase(){
+        statut=false;
+    }
+    
+    public boolean statutCase(){
+        return statut;
+    }
     
     public boolean presenceBombe (){
         
@@ -85,4 +95,28 @@ public class CelluleDeGrille {
     public void suppDrapeau(){
         drapeau=false;
     }
+    
+    @Override
+public String toString() {
+    
+//    if(statutCase()==true && presenceDrap()==true){
+//        return"D";
+//    }
+//    
+//    if (statutCase()==true){
+//        return "0";//case cachée
+//    }
+//    else{
+//        return ".";//case déminée
+//    }
+
+if(presenceBombe()==true){
+    return"B";
+    
+}
+else{
+    return ".";
+}
+}
+    
 }

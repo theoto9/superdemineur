@@ -19,22 +19,23 @@ public class PartieD {
     
     public PartieD(Joueur j){
         joueurCourant=j;
+        plateau=new plateauJeu();
     }
     
     private void placerBombe(int i){
         Random generateurAleat = new Random();
         
         for(int j=0 ; j<=i ; j++){
-            int x = 1000;
-            int y = 1000;
             
-            while(x<=30){
-                x = generateurAleat.nextInt();
-            }
             
-            while(y<=16){
-                y = generateurAleat.nextInt();
-            }
+            
+            
+               int x = generateurAleat.nextInt(30);
+            
+            
+            
+                int y = generateurAleat.nextInt(16);
+            
             
             if(plateau.presenceBombe(x, y)==false){
                 plateau.placerBombe(x, y);
@@ -45,7 +46,19 @@ public class PartieD {
         }
     }
     
-    private void initialiserPartie(){
+    public void cacherGrille(){
+    for (int i=29;i>=0;i--){
+        System.out.print("\n");
+        for (int j=15;j>=0;j--){
+            
+            plateau.cacherCase(i, j);
+            
+            
+        }
+    }
+  }
+    
+    public void initialiserPartie(){
         Scanner saisieUtilisateur = new Scanner(System.in);
         
         System.out.println("Quel est le nom du joueur 1");//On demande le nom du j1
@@ -54,34 +67,42 @@ public class PartieD {
         
         System.out.println("Combien de bombes voulez vous placer ?");
         int nb_b=saisieUtilisateur.nextInt();
-        
+        nb_b-=1;
         placerBombe(nb_b);
+        
+        cacherGrille();
         
     }
     
-    private void LancerPartie(){      
+    public void LancerPartie(){
+        
+        
+        
         Scanner saisieUtilisateur = new Scanner(System.in);
         boolean fin = false;
         while (fin==false){
-            System.out.println("1: Déminer \n2:drapeau\n3: utiliser kit");
+            plateau.afficherGrilleSurConsole();
+            System.out.println("\n1: Déminer \n2:drapeau\n3: utiliser kit");
             int choix=saisieUtilisateur.nextInt();
             
             if(choix==1){//si l'utilisateur décide de déminer 
-                System.out.println("Quels sont les coordonnées x de la case à déminer ?");
-                int x=saisieUtilisateur.nextInt();
+                System.out.println("Quelle est la ligne de la case à déminer ?");
+                int x=saisieUtilisateur.nextInt()-1;
                 
-                System.out.println("Quels sont les coordonnées y de la case à déminer ?");
-                int y=saisieUtilisateur.nextInt();
+                System.out.println("Quelle est la colonne de la case à déminer ?");
+                int y=saisieUtilisateur.nextInt()-1;
                 
                 boolean vlr= plateau.presenceBombe(x, y); //on vérifie si il a une bombe
                 boolean kit=plateau.presenceKit(x, y);//on vérifie s'il y a un kit
                 
                 if(vlr==true){//si presence de bombe
+                    System.out.println("vous avez touché une bombe");
                     int vie=joueurCourant.nbVie();//on recup le nb de vie du joueur
                     
-                    if(vie>0){//s'il lui reste des vies on lui en enlève une
+                    if(vie>1){//s'il lui reste des vies on lui en enlève une
                         joueurCourant.mort();
-                        System.out.println("vous perdez une vie");
+                        System.out.println("vous perdez une vie\nnb de vie restante : ");
+                        joueurCourant.nbVie();
                         plateau.supprimerBombe(x, y);//on supprime la bombe pour continuer à jouer
                         
                     }
@@ -97,7 +118,7 @@ public class PartieD {
                     joueurCourant.obtenirKit();
                 }
                 if(vlr==false){
-                    
+                    plateau.décacherCase(x, y);
                 }
                 
             }
