@@ -82,7 +82,7 @@ public class PartieD {
         boolean fin = false;
         while (fin==false){
             plateau.afficherGrilleSurConsole();
-            System.out.println("\n1: Déminer \n2:drapeau\n3: utiliser kit");
+            System.out.println("\n1: Déminer \n2: drapeau\n3: retirer drapeau\n4: utiliser kit");
             int choix=saisieUtilisateur.nextInt();
             
             if(choix==1){//si l'utilisateur décide de déminer 
@@ -124,10 +124,46 @@ public class PartieD {
             }
             
             if (choix==2){//si le joueur veut placer un drapeau
+                System.out.println("Sur quelle ligne voulez vous le placer ?");
+                int x=saisieUtilisateur.nextInt()-1;
                 
+                System.out.println("Sur quelle colonne voulez vous le placer ?");
+                int y=saisieUtilisateur.nextInt()-1;
+                
+                plateau.placerDrapeau(x, y);
             }
-            if (choix==3){//si l'utilisateur décide d'utiliser un kit
+            
+            if(choix==3){
+                System.out.println("Sur quelle ligne est le drapeau ?");
+                int x=saisieUtilisateur.nextInt()-1;
                 
+                System.out.println("Sur quelle colonne est le drapeau ?");
+                int y=saisieUtilisateur.nextInt()-1;
+                
+                plateau.suppDrapeau(x, y);
+            }
+            
+            if (choix==4){//si l'utilisateur décide d'utiliser un kit
+                int nb_kit=joueurCourant.nbKit();
+                if(nb_kit>0){
+                    joueurCourant.utiliserKit();
+                    System.out.println("Sur quelle ligne voulez vous inspecter ?");
+                    int x=saisieUtilisateur.nextInt()-1;
+                
+                    System.out.println("Sur quelle colonne voulez vous inspecter ?");
+                    int y=saisieUtilisateur.nextInt()-1;
+                    
+                    boolean bombe=plateau.presenceBombe(x, y);
+                    if(bombe==true){
+                        System.out.println("il y a une bombe sur cette case");
+                    }
+                    else{
+                        System.out.println("il n'y a pas de bombe sur cette case");
+                    }
+                }
+                else{
+                    System.out.println("vous n'avez pas de kit");
+                }
             }
             
             

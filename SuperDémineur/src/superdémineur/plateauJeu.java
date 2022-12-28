@@ -91,8 +91,9 @@ public void supprimerBombe(int x, int y){
     
  } 
   public int nbBombesVoisines(int x, int y){
-    int c =grille[x][y].nombreBombeVoisines();   
-    return c;
+    int nb_voisine=0;
+    boolean diag_h_d=grille[x+1][y+1].presenceBombe();
+    return nb_voisine;
  }  
  
   

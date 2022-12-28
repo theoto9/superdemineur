@@ -34,7 +34,9 @@ public class Joueur {
     public void obtenirKit() {
         kit_deminage += 1;
     }  
-    
+    public int nbKit(){
+        return kit_deminage;
+    }
     public void utiliserKit() {
         kit_deminage -= 1;
     }      

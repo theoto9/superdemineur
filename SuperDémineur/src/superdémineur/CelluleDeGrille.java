@@ -99,24 +99,24 @@ public class CelluleDeGrille {
     @Override
 public String toString() {
     
-//    if(statutCase()==true && presenceDrap()==true){
-//        return"D";
-//    }
-//    
-//    if (statutCase()==true){
-//        return "0";//case cachée
-//    }
-//    else{
-//        return ".";//case déminée
-//    }
-
-if(presenceBombe()==true){
-    return"B";
+    if(statutCase()==true && presenceDrap()==true){
+        return"D";
+    }
     
-}
-else{
-    return ".";
-}
+    if (statutCase()==true){
+        return "0";//case cachée
+    }
+    else{
+        return ".";//case déminée
+    }
+
+//if(presenceBombe()==true){
+//    return"B";
+//    
+//}
+//else{
+//    return ".";
+//}
 }
     
 }
