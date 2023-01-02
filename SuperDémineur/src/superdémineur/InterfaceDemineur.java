@@ -24,9 +24,9 @@ public class InterfaceDemineur extends javax.swing.JPanel {
         panneau_ptv.setVisible(false);
         useKit.setVisible(false);
         
-        for(int i=28; i>=0;i--){
-            for(int j=15;j>=0;j--){
-             CelluleGraphique CellGraph = new CelluleGraphique(); 
+        for(int i=27; i>=0;i--){
+            for(int j=14;j>=0;j--){
+             CelluleGraphique CellGraph = new CelluleGraphique(plateau.grille[i][j]); 
              panneau_grille.add(CellGraph);
             }
         }
@@ -34,19 +34,19 @@ public class InterfaceDemineur extends javax.swing.JPanel {
     
     
     
-    private void placerBombe(int i){
+    public void placerBombe(int i){
         Random generateurAleat = new Random();
         
-        for(int j=0 ; j<=i ; j++){
+        for(int j=1 ; j<=i ; j++){
             
             
             
             
-               int x = generateurAleat.nextInt(30);
+               int x = generateurAleat.nextInt(28);
             
             
             
-                int y = generateurAleat.nextInt(16);
+                int y = generateurAleat.nextInt(15);
             
             
             if(plateau.presenceBombe(x, y)==false){
@@ -59,9 +59,9 @@ public class InterfaceDemineur extends javax.swing.JPanel {
     }
     
     public void cacherGrille(){
-    for (int i=29;i>=0;i--){
+    for (int i=27;i>=0;i--){
         System.out.print("\n");
-        for (int j=15;j>=0;j--){
+        for (int j=14;j>=0;j--){
             
             plateau.cacherCase(i, j);
             
@@ -71,15 +71,8 @@ public class InterfaceDemineur extends javax.swing.JPanel {
   }
     
     public void initialiserPartie(){
-        Scanner saisieUtilisateur = new Scanner(System.in);
-        
-        System.out.println("Quel est le nom du joueur 1");//On demande le nom du j1
-        String n_j1=saisieUtilisateur.nextLine();
-        Joueur J1=new Joueur(n_j1);
-        
-        System.out.println("Combien de bombes voulez vous placer ?");
-        int nb_b=saisieUtilisateur.nextInt();
-        nb_b-=1;
+     
+        int nb_b= Integer.valueOf(choixBombe.getText());
         placerBombe(nb_b);
         
         cacherGrille();
@@ -206,6 +199,9 @@ public class InterfaceDemineur extends javax.swing.JPanel {
         panneau_ptv = new javax.swing.JPanel();
         PointVie = new javax.swing.JLabel();
         ptV = new javax.swing.JLabel();
+        choix_bombe = new javax.swing.JPanel();
+        choixDeBombe = new javax.swing.JLabel();
+        choixBombe = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(102, 102, 102));
         setForeground(new java.awt.Color(204, 204, 204));
@@ -242,7 +238,7 @@ public class InterfaceDemineur extends javax.swing.JPanel {
 
         useKit.setBackground(new java.awt.Color(255, 0, 0));
         useKit.setText("utiliser Kit");
-        add(useKit, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, -1));
+        add(useKit, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
 
         lancerPartie.setBackground(new java.awt.Color(255, 0, 0));
         lancerPartie.setText("Play");
@@ -251,7 +247,7 @@ public class InterfaceDemineur extends javax.swing.JPanel {
                 lancerPartieActionPerformed(evt);
             }
         });
-        add(lancerPartie, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 90, 30));
+        add(lancerPartie, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, 90, 30));
 
         panneau_ptv.setBackground(new java.awt.Color(102, 204, 255));
         panneau_ptv.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -263,6 +259,18 @@ public class InterfaceDemineur extends javax.swing.JPanel {
         panneau_ptv.add(ptV, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         add(panneau_ptv, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 90, 50));
+
+        choix_bombe.setBackground(new java.awt.Color(0, 204, 255));
+        choix_bombe.setForeground(new java.awt.Color(0, 204, 255));
+        choix_bombe.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        choixDeBombe.setText("Combien de bombes");
+        choix_bombe.add(choixDeBombe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 20));
+
+        choixBombe.setText("Bombes?");
+        choix_bombe.add(choixBombe, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        add(choix_bombe, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 120, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void lancerPartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lancerPartieActionPerformed
@@ -270,12 +278,17 @@ public class InterfaceDemineur extends javax.swing.JPanel {
         panneau_kit.setVisible(true);
         panneau_ptv.setVisible(true);
         useKit.setVisible(true);
+        initialiserPartie();
         lancerPartie.setEnabled(true);
+        choix_bombe.setVisible(false);
     }//GEN-LAST:event_lancerPartieActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel PointVie;
+    private javax.swing.JTextField choixBombe;
+    private javax.swing.JLabel choixDeBombe;
+    private javax.swing.JPanel choix_bombe;
     private javax.swing.JButton lancerPartie;
     private javax.swing.JLabel nbB;
     private javax.swing.JLabel nbBombes;
