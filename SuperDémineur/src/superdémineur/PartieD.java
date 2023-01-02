@@ -13,8 +13,8 @@ import java.util.Scanner;
  */
 public class PartieD {
     
-    private plateauJeu plateau;
-    private Joueur joueurCourant;
+    public plateauJeu plateau;
+    public Joueur joueurCourant;
     
     
     public PartieD(Joueur j){
