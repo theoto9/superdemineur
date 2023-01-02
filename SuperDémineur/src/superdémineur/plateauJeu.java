@@ -299,6 +299,8 @@ public class plateauJeu {
         return nb_voisine;
     }
     
+    
+    
     public void Solution(){
         
         
