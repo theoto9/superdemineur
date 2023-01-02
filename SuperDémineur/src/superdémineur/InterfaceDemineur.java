@@ -7,6 +7,9 @@ package superdémineur;
 import java.util.Random;
 import java.util.Scanner;
 
+
+
+
 /**
  *
  * @author Dell
@@ -14,11 +17,51 @@ import java.util.Scanner;
 public class InterfaceDemineur extends javax.swing.JPanel {
     public plateauJeu plateau;
     public Joueur joueurCourant;
+    
+    
+    
+    public static void main(String args[]) {
+        
+        System.out.println("OK");
+        /* Set the Nimbus look and feel */
+       //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(InterfaceDemineur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(InterfaceDemineur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(InterfaceDemineur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(InterfaceDemineur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+       //</editor-fold
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new InterfaceDemineur().setVisible(true);
+            }
+        });
+    }
+    
+     
     /**
      * Creates new form InterfaceDemineur
      */
     public InterfaceDemineur() {
         initComponents();
+        
+        plateau = new plateauJeu();
         panneau_bombe.setVisible(false);
         panneau_kit.setVisible(false);
         panneau_ptv.setVisible(false);
@@ -279,6 +322,7 @@ public class InterfaceDemineur extends javax.swing.JPanel {
         panneau_ptv.setVisible(true);
         useKit.setVisible(true);
         initialiserPartie();
+        panneau_grille.repaint();
         lancerPartie.setEnabled(true);
         choix_bombe.setVisible(false);
     }//GEN-LAST:event_lancerPartieActionPerformed
