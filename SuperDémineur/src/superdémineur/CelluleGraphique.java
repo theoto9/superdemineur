@@ -18,6 +18,20 @@ public class CelluleGraphique extends JButton {
     ImageIcon img_blanc = new javax.swing.ImageIcon(getClass().getResource("/images/Blanc.png"));
     ImageIcon img_bombe = new javax.swing.ImageIcon(getClass().getResource("/images/bombe.png"));
     ImageIcon img_drapeau = new javax.swing.ImageIcon(getClass().getResource("/images/drapeau.png"));
+    ImageIcon img_1 = new javax.swing.ImageIcon(getClass().getResource("/images/1.png"));
+    ImageIcon img_2 = new javax.swing.ImageIcon(getClass().getResource("/images/2.png"));
+    ImageIcon img_3 = new javax.swing.ImageIcon(getClass().getResource("/images/3.png"));
+    ImageIcon img_4 = new javax.swing.ImageIcon(getClass().getResource("/images/4.png"));
+    ImageIcon img_5 = new javax.swing.ImageIcon(getClass().getResource("/images/5.png"));
+    ImageIcon img_6 = new javax.swing.ImageIcon(getClass().getResource("/images/6.png"));
+    ImageIcon img_7 = new javax.swing.ImageIcon(getClass().getResource("/images/7.png"));
+    ImageIcon img_8 = new javax.swing.ImageIcon(getClass().getResource("/images/8.png"));
+    
+    
+    
+    
+    
+    
     
     public CelluleGraphique (CelluleDeGrille uneCellule){
         celluleAssociees = uneCellule;
@@ -27,9 +41,9 @@ public class CelluleGraphique extends JButton {
   @Override
     public void paintComponent(Graphics G){
         super.paintComponent(G);
-       
-        setIcon(img_gris);
-        
+       int i=0;
+        //setIcon(img_gris);
+       while(i!=0){ 
         if(celluleAssociees.presenceBombe()==true){
            setIcon(img_bombe); 
         }
@@ -39,5 +53,31 @@ public class CelluleGraphique extends JButton {
         if(celluleAssociees.presenceDrap()==true){
             setIcon(img_drapeau);
         }
-   } 
+        if(celluleAssociees.nombreBombeVoisines()==1){
+            setIcon(img_1);
+        }
+        if(celluleAssociees.nombreBombeVoisines()==2){
+            setIcon(img_2);
+        }
+        if(celluleAssociees.nombreBombeVoisines()==3){
+            setIcon(img_3);
+        }
+        if(celluleAssociees.nombreBombeVoisines()==4){
+            setIcon(img_4);
+        }
+        if(celluleAssociees.nombreBombeVoisines()==5){
+            setIcon(img_5);
+        }
+        if(celluleAssociees.nombreBombeVoisines()==6){
+            setIcon(img_6);
+        }
+        if(celluleAssociees.nombreBombeVoisines()==7){
+            setIcon(img_7);
+        }
+        if(celluleAssociees.nombreBombeVoisines()==8){
+            setIcon(img_8);
+        }
+   }
+    
+}
 }
