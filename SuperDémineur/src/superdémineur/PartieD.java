@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class PartieD {
     
     private plateauJeu plateau;
-    private Joueur joueurCourant;
+    public Joueur joueurCourant;
     
     
     public PartieD(Joueur j) {
@@ -34,6 +34,23 @@ public class PartieD {
             
             if (plateau.presenceBombe(x, y) == false) {
                 plateau.placerBombe(x, y);
+            } else {
+                j -= 1;
+            }            
+        }
+    }
+    
+    private void placerKit() {
+        Random generateurAleat = new Random();
+        
+        for (int j = 0; j <= 5; j++) {
+            
+            int x = generateurAleat.nextInt(30);
+            
+            int y = generateurAleat.nextInt(16);
+            
+            if (plateau.presenceKit(x, y) == false) {
+                plateau.placerKit(x, y);
             } else {
                 j -= 1;
             }            
@@ -64,7 +81,7 @@ public class PartieD {
         int nb_b = saisieUtilisateur.nextInt();
         nb_b -= 1;
         placerBombe(nb_b);
-        
+        placerKit();
         cacherGrille();
         
     }
@@ -118,6 +135,8 @@ public class PartieD {
 //                    int a = plateau.nbBombesVoisines(x, y);
 //                    System.out.println("il y a "+a+" bombes a proximité");
                     plateau.decouverteGalerie(x, y);
+                    
+                    joueurCourant.affecter_nbkit(plateau.envoyer_kit());
                 }
                 
             }
@@ -145,6 +164,7 @@ public class PartieD {
             if (choix == 4) {//si l'utilisateur décide d'utiliser un kit
                 int nb_kit = joueurCourant.nbKit();
                 if (nb_kit > 0) {
+                    plateau.ut_kit();
                     joueurCourant.utiliserKit();
                     System.out.println("Sur quelle ligne voulez vous inspecter ?");
                     int x = saisieUtilisateur.nextInt() - 1;

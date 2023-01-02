@@ -10,11 +10,13 @@ package superdémineur;
  */
 public class plateauJeu {
     
+    int nb_kit;
     boolean solution;
     public CelluleDeGrille[][] grille = new CelluleDeGrille[30][16];
 
     public plateauJeu() {
         solution=false;
+        nb_kit=0;
         for (int i = 0; i < 30; i++) {
             for (int j = 0; j < 16; j++) {
                 grille[i][j] = new CelluleDeGrille();
@@ -62,7 +64,19 @@ public class plateauJeu {
         return b;
 
     }
-
+    public int envoyer_kit(){
+        return nb_kit;
+    }
+    public int aj_kit(){
+        nb_kit+=1;
+        return nb_kit;
+    }
+    
+    public int ut_kit(){
+        nb_kit-=1;
+        return nb_kit;
+    }
+    
     public void cacherCase(int x, int y) {
         grille[x][y].cacherCase();
     }
@@ -106,20 +120,25 @@ public class plateauJeu {
         int lgn2 = -1;
         int col2 = -1;
 
-        System.out.println("decouverte galerie : " + lgn + ", " + col);
+        //System.out.println("decouverte galerie : " + lgn + ", " + col);
 
         if (!grille[lgn][col].statutCase()) {//on regarde si la case à déja été découverte
-            System.out.println("deja decouverte");
+            //System.out.println("deja decouverte");
             return;//si elle ai déjà découverte on quitte
         }
-
+        
+        if (this.presenceKit(lgn, col)){
+            this.aj_kit();
+            System.out.println("vous avez recupéré un kit");
+        }
+        
         grille[lgn][col].décacherCase();//si on est ici c'est que la case n'ai pas découverte et qu'elle ne contient pas de bombe
 
         int nb = nbBombesVoisines(lgn, col);//on chercher combien il y a de bombes aux alentours
 
         if (nb != 0) {//s'il y a des bombes aux alentours on lui attribue le nb de bombes voisines et on quitte
 
-            System.out.println("sortie rec voici le nb de bombe" + nb);
+            //System.out.println("sortie rec voici le nb de bombe" + nb);
             grille[lgn][col].attribuerNbBombe(nb);
 
             return;

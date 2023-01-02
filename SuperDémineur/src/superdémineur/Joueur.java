@@ -21,6 +21,10 @@ public class Joueur {
         kit_deminage=0;
     }
     
+    public void affecter_nbkit(int i){
+        kit_deminage=i;
+    }
+    
     public int nbVie(){
         System.out.print(pt_vie);
         return(pt_vie);
