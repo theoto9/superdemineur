@@ -12,13 +12,24 @@ import java.util.Scanner;
  * @author Dell
  */
 public class InterfaceDemineur extends javax.swing.JPanel {
-
+    public plateauJeu plateau;
+    public Joueur joueurCourant;
     /**
      * Creates new form InterfaceDemineur
      */
     public InterfaceDemineur() {
         initComponents();
+        panneau_bombe.setVisible(false);
+        panneau_kit.setVisible(false);
+        panneau_ptv.setVisible(false);
+        useKit.setVisible(false);
         
+        for(int i=28; i>=0;i--){
+            for(int j=15;j>=0;j--){
+             CelluleGraphique CellGraph = new CelluleGraphique(); 
+             panneau_grille.add(CellGraph);
+            }
+        }
     }
     
     
@@ -172,7 +183,7 @@ public class InterfaceDemineur extends javax.swing.JPanel {
             
         }
     }
-}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -183,16 +194,16 @@ public class InterfaceDemineur extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        panneau_grille = new javax.swing.JPanel();
+        panneau_bombe = new javax.swing.JPanel();
         nbBombes = new javax.swing.JLabel();
         nbB = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        panneau_kit = new javax.swing.JPanel();
         nombre_kit = new javax.swing.JLabel();
         nbKit = new javax.swing.JLabel();
         useKit = new javax.swing.JButton();
         lancerPartie = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        panneau_ptv = new javax.swing.JPanel();
         PointVie = new javax.swing.JLabel();
         ptV = new javax.swing.JLabel();
 
@@ -200,34 +211,34 @@ public class InterfaceDemineur extends javax.swing.JPanel {
         setForeground(new java.awt.Color(204, 204, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel1.setLayout(new java.awt.GridLayout(15, 28));
-        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 680, 360));
+        panneau_grille.setBackground(new java.awt.Color(204, 204, 204));
+        panneau_grille.setLayout(new java.awt.GridLayout(15, 28));
+        add(panneau_grille, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 672, 360));
 
-        jPanel2.setBackground(new java.awt.Color(102, 204, 255));
-        jPanel2.setPreferredSize(new java.awt.Dimension(100, 50));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panneau_bombe.setBackground(new java.awt.Color(102, 204, 255));
+        panneau_bombe.setPreferredSize(new java.awt.Dimension(100, 50));
+        panneau_bombe.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nbBombes.setText("nombre bombe :");
-        jPanel2.add(nbBombes, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+        panneau_bombe.add(nbBombes, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
 
         nbB.setText("nbBombes");
-        jPanel2.add(nbB, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 28, -1, -1));
+        panneau_bombe.add(nbB, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 28, -1, -1));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        add(panneau_bombe, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jPanel4.setBackground(new java.awt.Color(102, 204, 255));
-        jPanel4.setForeground(new java.awt.Color(51, 153, 255));
-        jPanel4.setPreferredSize(new java.awt.Dimension(100, 50));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panneau_kit.setBackground(new java.awt.Color(102, 204, 255));
+        panneau_kit.setForeground(new java.awt.Color(51, 153, 255));
+        panneau_kit.setPreferredSize(new java.awt.Dimension(100, 50));
+        panneau_kit.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         nombre_kit.setText("Nombres Kit :");
-        jPanel4.add(nombre_kit, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 6, -1, -1));
+        panneau_kit.add(nombre_kit, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 6, -1, -1));
 
         nbKit.setText("nbKit");
-        jPanel4.add(nbKit, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 28, -1, -1));
+        panneau_kit.add(nbKit, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 28, -1, -1));
 
-        add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, 50));
+        add(panneau_kit, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, 50));
 
         useKit.setBackground(new java.awt.Color(255, 0, 0));
         useKit.setText("utiliser Kit");
@@ -240,37 +251,40 @@ public class InterfaceDemineur extends javax.swing.JPanel {
                 lancerPartieActionPerformed(evt);
             }
         });
-        add(lancerPartie, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
+        add(lancerPartie, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 90, 30));
 
-        jPanel3.setBackground(new java.awt.Color(102, 204, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panneau_ptv.setBackground(new java.awt.Color(102, 204, 255));
+        panneau_ptv.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PointVie.setText("Point de vie :");
-        jPanel3.add(PointVie, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+        panneau_ptv.add(PointVie, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         ptV.setText("ptVie");
-        jPanel3.add(ptV, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
+        panneau_ptv.add(ptV, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 90, 50));
+        add(panneau_ptv, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, 90, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void lancerPartieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lancerPartieActionPerformed
-
-        lancerPartie.setEnabled(false);
+        panneau_bombe.setVisible(true);
+        panneau_kit.setVisible(true);
+        panneau_ptv.setVisible(true);
+        useKit.setVisible(true);
+        lancerPartie.setEnabled(true);
     }//GEN-LAST:event_lancerPartieActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel PointVie;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JButton lancerPartie;
     private javax.swing.JLabel nbB;
     private javax.swing.JLabel nbBombes;
     private javax.swing.JLabel nbKit;
     private javax.swing.JLabel nombre_kit;
+    private javax.swing.JPanel panneau_bombe;
+    private javax.swing.JPanel panneau_grille;
+    private javax.swing.JPanel panneau_kit;
+    private javax.swing.JPanel panneau_ptv;
     private javax.swing.JLabel ptV;
     private javax.swing.JButton useKit;
     // End of variables declaration//GEN-END:variables
