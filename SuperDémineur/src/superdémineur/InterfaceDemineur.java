@@ -18,8 +18,7 @@ public class InterfaceDemineur extends javax.swing.JPanel {
      */
     public InterfaceDemineur() {
         initComponents();
-        joueurCourant=j;
-        plateau=new plateauJeu();
+        
     }
     
     
