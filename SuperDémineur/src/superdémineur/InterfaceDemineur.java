@@ -6,6 +6,7 @@ package superdémineur;
 
 import java.util.Random;
 import java.util.Scanner;
+import java.awt.event.*;
 
 
 
@@ -14,17 +15,15 @@ import java.util.Scanner;
  *
  * @author Dell
  */
-public class InterfaceDemineur extends javax.swing.JPanel {
+public class InterfaceDemineur extends javax.swing.JFrame {
     public plateauJeu plateau;
     public Joueur joueurCourant;
     
     
     
-    public static void main(String args[]) {
-        
-        System.out.println("OK");
+     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-       //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
@@ -44,15 +43,18 @@ public class InterfaceDemineur extends javax.swing.JPanel {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(InterfaceDemineur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-       //</editor-fold
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InterfaceDemineur().setVisible(true);
+                InterfaceDemineur a = new InterfaceDemineur();
+               a.setVisible(true);
+                a.pack();
             }
         });
     }
+
     
      
     /**
@@ -60,7 +62,7 @@ public class InterfaceDemineur extends javax.swing.JPanel {
      */
     public InterfaceDemineur() {
         initComponents();
-        
+         
         plateau = new plateauJeu();
         panneau_bombe.setVisible(false);
         panneau_kit.setVisible(false);
@@ -75,7 +77,18 @@ public class InterfaceDemineur extends javax.swing.JPanel {
         }
     }
     
-    
+     public int MousePressed(MouseEvent e){
+         int c;
+         c=0;
+        int bouton = e.getButton();
+        if (bouton==MouseEvent.BUTTON1){
+           c=1; 
+        }
+        if (bouton==MouseEvent.BUTTON3){
+           c=2; 
+        }
+        return c;
+    }
     
     public void placerBombe(int i){
         Random generateurAleat = new Random();
@@ -116,21 +129,32 @@ public class InterfaceDemineur extends javax.swing.JPanel {
     public void initialiserPartie(){
      
         int nb_b= Integer.valueOf(choixBombe.getText());
+        nbB.setText(choixBombe.getText());
+        nbKit.setText(0+"");
+        ptV.setText(3+"");
         placerBombe(nb_b);
         
         cacherGrille();
         
     }
-    public void LancerPartie(){
+    
+   
+    
+    
+    
+    public void LancerPartie() {
+       Scanner saisieUtilisateur = new Scanner(System.in); 
         
         
         
-        Scanner saisieUtilisateur = new Scanner(System.in);
         boolean fin = false;
         while (fin==false){
             plateau.afficherGrilleSurConsole();
-            System.out.println("\n1: Déminer \n2: drapeau\n3: retirer drapeau\n4: utiliser kit");
-            int choix=saisieUtilisateur.nextInt();
+            
+            
+            
+            System.out.println("\n1: Déminer \n2: drapeau\n3: retirer drapeau\n4: utiliser kit\n5: donner la solution");
+            int choix = saisieUtilisateur.nextInt();
             
             if(choix==1){//si l'utilisateur décide de déminer 
                 System.out.println("Quelle est la ligne de la case à déminer ?");
@@ -172,6 +196,8 @@ public class InterfaceDemineur extends javax.swing.JPanel {
                 }
                 
             }
+ //           if(Cellgraph.MousePressed==2){
+ //               Cellgraph.placerDrapeau;
             
             if (choix==2){//si le joueur veut placer un drapeau
                 System.out.println("Sur quelle ligne voulez vous le placer ?");
@@ -218,8 +244,8 @@ public class InterfaceDemineur extends javax.swing.JPanel {
             
             
         }
+    
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -250,7 +276,7 @@ public class InterfaceDemineur extends javax.swing.JPanel {
         setForeground(new java.awt.Color(204, 204, 204));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panneau_grille.setBackground(new java.awt.Color(204, 204, 204));
+        panneau_grille.setBackground(new java.awt.Color(255, 102, 102));
         panneau_grille.setLayout(new java.awt.GridLayout(15, 28));
         add(panneau_grille, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 672, 360));
 
@@ -309,8 +335,6 @@ public class InterfaceDemineur extends javax.swing.JPanel {
 
         choixDeBombe.setText("Combien de bombes");
         choix_bombe.add(choixDeBombe, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, 20));
-
-        choixBombe.setText("Bombes?");
         choix_bombe.add(choixBombe, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         add(choix_bombe, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 120, 50));
@@ -346,3 +370,4 @@ public class InterfaceDemineur extends javax.swing.JPanel {
     private javax.swing.JButton useKit;
     // End of variables declaration//GEN-END:variables
 }
+
